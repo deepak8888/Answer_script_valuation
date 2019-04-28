@@ -72,6 +72,9 @@ def semantic_main(sen1,sen2):
     for v in v2:
         if v > 0.8025:
             c2 += 1
+    dow=c1+c2/1.8
+    fs=s/dow
+    return(fs)
     # print(c1,c2)
     dow = (c1 + c2) / 1.8
     fn = dow / s
