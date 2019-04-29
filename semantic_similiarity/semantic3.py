@@ -77,3 +77,24 @@ def semantic_main(sen1,sen2):
     dow = (c1 + c2) / 1.8
     fn = s / dow
     return fn
+def wos(sen1,sen2):
+    v1=list()
+    v2=list()
+
+    token1=nltk.word_tokenize(sen1)
+    token2=nltk.word_tokenize(sen2)
+    for t in token1:
+        v1.append(token1.index(t)+1)
+    for t2 in token2:
+        if t2 in token1:
+            v2.append(token1.index(t2)+1)
+        else:
+            v2.append(token2.index(t2)+1)
+    if len(v1) > len(v2):
+        v2 = normalise(v2, len(v1))
+    if len(v1)<len(v2):
+        v1 = normalise(v1, len(v2))
+    #print(v1,v2)
+    wos=np.divide(LA.norm(np.subtract(v1, v2)), LA.norm(np.multiply(v1, v2)))
+    return wos
+
